@@ -1,1 +1,112 @@
+#ifndef CLASSES_H_INCLUDED
+#define CLASSES_H_INCLUDED
 
+class Veiculo
+{
+public:
+    int vel;
+    int tipo;
+    Veiculo(int tp);
+    int getVelMax();
+    bool getLigado();
+    void setLigado(int l);
+private: // Não pode acessar as propriedades por fora
+    void setVelMax(int vm);
+    std::string nome;
+    int velMax;
+    bool ligado;
+
+};
+
+bool Veiculo::getLigado()
+{
+    return ligado;
+}
+
+void Veiculo::setLigado(int l)
+{
+    if(l==1)
+        ligado=true;
+    else if(l==0)
+        ligado=false;
+}
+
+int Veiculo::getVelMax()
+{
+    return velMax;
+}
+
+void Veiculo::setVelMax(int vm)
+{
+    velMax=vm;
+}
+
+Veiculo::Veiculo(int tp) // 1=Carro; 2=Aviao; 3=Navio
+{
+    tipo=tp;
+    if(tipo==1)
+    {
+        nome="Carro";
+      setVelMax(200);
+    }else if(tipo==2)
+    {
+        nome="Aviao";
+      setVelMax(800);
+    }else if(tipo=3)
+    {
+        nome="Navio";
+      setVelMax(120);
+    }
+}
+
+#endif // CLASSES_H_INCLUDED
+
+
+/*-------------------------------------------------------------------------*/
+
+
+#include <iostream>
+#include "classes.h"
+using namespace std;
+
+int main()
+{
+    Veiculo *v1= new Veiculo(1);
+    Veiculo *v2= new Veiculo(2);
+    Veiculo *v3= new Veiculo(3);
+
+    v1->setLigado(1);
+    v2->setLigado(1);
+    v3->setLigado(1);
+
+    cout << v1->getVelMax() << endl;
+    cout << v2->getVelMax() << endl;
+    cout << v3->getVelMax() << endl;
+
+    if(v1->getLigado()){
+        cout << "Veiculo 1 esta ligado" << endl;
+    }
+    else
+    {
+        cout << "Veiculo 1 esta desligado" << endl;
+    }
+     if(v2->getLigado()){
+        cout << "Veiculo 2 esta ligado" << endl;
+    }
+    else
+    {
+        cout << "Veiculo 2 esta desligado" << endl;
+    }
+     if(v3->getLigado()){
+        cout << "Veiculo 3 esta ligado" << endl;
+    }
+    else
+    {
+        cout << "Veiculo 3 esta desligado" << endl;
+    }
+
+
+
+    system("pause");
+    return 0;
+}
